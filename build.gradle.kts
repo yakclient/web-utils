@@ -8,8 +8,8 @@ plugins {
 
     id("maven-publish")
 }
-group =  "net.yakclient"
-version = "1.0-SNAPSHOT"
+group = "net.yakclient"
+version = "1.3"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
     implementation("org.springframework.boot:spring-boot-starter-web") {
         exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
     }
@@ -30,40 +29,24 @@ dependencies {
 
 tasks.wrapper {
     gradleVersion = "7.1.1"
-    distributionType = Wrapper.DistributionType.ALL
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+tasks.shadowJar {
+    enabled = false
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/yakclient/web-utils")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-            }
-        }
-    }
-    publications {
-        register<MavenPublication>("gpr") {
-            from(components["java"])
-        }
-    }
+tasks.jar {
+    this.archiveClassifier.set("")
 }
 
 subprojects {
-    apply( plugin = "org.jetbrains.kotlin.jvm")
-    apply( plugin = "org.springframework.boot")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
-    apply( plugin = "org.javamodularity.moduleplugin")
-    apply( plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "org.javamodularity.moduleplugin")
+    apply(plugin = "com.github.johnrengelman.shadow")
 
     repositories {
         mavenCentral()
     }
-
 }
