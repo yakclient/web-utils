@@ -1,4 +1,4 @@
-package net.yakclient.web.utils
+package net.yakclient.web.utils.config
 
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -21,6 +21,6 @@ class ConfigReader (
 
     fun <T> readObject(parser: ConfigParser<T>, property: String): T? = readString(property)?.parse(parser)
 
-    fun isTesting(): Boolean = readObject(BooleanParser, Constants.TESTING) ?: false
+    fun isTesting(property: String = "testing"): Boolean = readObject(BooleanParser, property) ?: false
 }
 

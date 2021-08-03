@@ -1,0 +1,10 @@
+yakclient:
+  web-utils:
+    enable-config-ds: false
+    config-ds:
+      url: yakclient.web.server.api.persistence.connection-url
+      user: yakclient.web.server.api.persistence.connection-username
+      password: yakclient.web.server.api.persistence.connection-password
+      driver: yakclient.web.server.api.persistence.connection-driver
+      module: yakclient.web.server.api.persistence.data-source-module
+      type: yakclient.web.server.api.persistence.data-source-type

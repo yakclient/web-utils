@@ -1,4 +1,4 @@
-package net.yakclient.web.utils
+package net.yakclient.web.utils.config
 
 import java.net.URI
 
